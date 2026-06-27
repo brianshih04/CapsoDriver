@@ -9,30 +9,36 @@ header, and the CDAS3 command specification workbook.
 - `API_Capso.h`  
   Public header for the exported `CapsoLLD.dll` API.
 
-- `CDAS3 New command_V16_AVISION.xlsx`  
+- `include/API_Capso.h`  
+  Public API header copy from the packaged driver folder.
+
+- `docs/CDAS3 New command_V16_AVISION.xlsx`  
   CDAS3 command specification, including command layouts and device error-code
   definitions.
 
-- `CapsoDriver.rar`  
+- `archive/CapsoDriver.rar`  
   Original packaged archive.
 
-- `CapsoDriver/CapsoDriver/CapsoDriver_winusb`  
+- `Driver`  
   WinUSB driver installation package:
   - `AVCapso.inf`
   - `avcapso.cat`
   - `InstallDev.bat`
   - `RemoveDev.bat`
 
-- `CapsoDriver/CapsoDriver/CapsoTest_winusb`  
-  Visual Studio solution containing:
-  - `CapsoLLD`: low-level WinUSB DLL source.
-  - `CapsoTest`: MFC dialog sample application.
+- `CapsoLLD`  
+  Low-level WinUSB DLL source project.
 
-- `CapsoDriver/CapsoDriver/x32` and `CapsoDriver/CapsoDriver/x64`  
+- `CapsoTest`  
+  MFC dialog sample application source project.
+
+- `CapsoTest.sln`  
+  Visual Studio solution containing `CapsoLLD` and `CapsoTest`.
+
+- `bin/x32` and `bin/x64`  
   Prebuilt sample binaries.
 
-- `CapsoDriver/CapsoDriver/VC_redist.x86.exe` and
-  `CapsoDriver/CapsoDriver/VC_redist.x64.exe`  
+- `redist/VC_redist.x86.exe` and `redist/VC_redist.x64.exe`  
   Visual C++ runtime installers.
 
 ## Architecture
@@ -82,8 +88,8 @@ Device command error codes are returned in the command status packet read by
 
 ## Status Packet and Error Codes
 
-According to `CDAS3 New command_V16_AVISION.xlsx`, the 32-byte status packet has
-this layout:
+According to `docs/CDAS3 New command_V16_AVISION.xlsx`, the 32-byte status packet
+has this layout:
 
 ```text
 Byte 0..3 : "USBS"
@@ -136,7 +142,7 @@ From the repository root:
 
 ```powershell
 & 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin\MSBuild.exe' `
-  'CapsoDriver\CapsoDriver\CapsoTest_winusb\CapsoTest.sln' `
+  'CapsoTest.sln' `
   /p:Configuration=Release `
   /p:Platform=x64 `
   /m
@@ -145,8 +151,8 @@ From the repository root:
 Expected output:
 
 ```text
-CapsoDriver\CapsoDriver\CapsoTest_winusb\x64\Release\CapsoTest.exe
-CapsoDriver\CapsoDriver\CapsoTest_winusb\x64\Release\CapsoLLD_x64.dll
+x64\Release\CapsoTest.exe
+x64\Release\CapsoLLD_x64.dll
 ```
 
 Note: the current DLL project has a Visual Studio warning because the project
@@ -158,13 +164,13 @@ target name and linker output name do not match (`CapsoLLD.dll` vs
 Run the installer script as Administrator:
 
 ```powershell
-CapsoDriver\CapsoDriver\CapsoDriver_winusb\InstallDev.bat
+Driver\InstallDev.bat
 ```
 
 To remove the driver package:
 
 ```powershell
-CapsoDriver\CapsoDriver\CapsoDriver_winusb\RemoveDev.bat
+Driver\RemoveDev.bat
 ```
 
 ## Runtime Notes

@@ -1,5 +1,20 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- Reorganized the repository layout to remove the extra nested
+  `CapsoDriver/CapsoDriver` folder.
+- Moved the DLL source project to `CapsoLLD/`.
+- Moved the MFC sample application project to `CapsoTest/`.
+- Moved the Visual Studio solution to the repository root as `CapsoTest.sln`.
+- Moved the WinUSB driver package to `Driver/`.
+- Moved rebuilt sample binaries to `bin/x32/` and `bin/x64/`.
+- Moved Visual C++ redistributable installers to `redist/`.
+- Moved the command workbook to `docs/`.
+- Moved the original packaged archive to `archive/`.
+
 ## 2026-06-27
 
 ### Added
@@ -21,10 +36,10 @@
   ```
 
 - Updated the prebuilt `x32` and `x64` sample binaries from the rebuilt output:
-  - `CapsoDriver/CapsoDriver/x32/CapsoLLD.dll`
-  - `CapsoDriver/CapsoDriver/x32/CapsoTest.exe`
-  - `CapsoDriver/CapsoDriver/x64/CapsoLLD.dll`
-  - `CapsoDriver/CapsoDriver/x64/CapsoTest.exe`
+  - `bin/x32/CapsoLLD.dll`
+  - `bin/x32/CapsoTest.exe`
+  - `bin/x64/CapsoLLD.dll`
+  - `bin/x64/CapsoTest.exe`
 
 ### Fixed
 
