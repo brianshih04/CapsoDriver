@@ -95,12 +95,13 @@ Important files:
 
 ### `bin/`
 
-Prebuilt binaries rebuilt from the current source tree.
+Pre-built runtime files for users who want to run the sample without compiling
+the Visual Studio solution.
 
-- `bin/x32/CapsoTest.exe`: 32-bit sample application.
-- `bin/x32/CapsoLLD.dll`: 32-bit low-level DLL.
-- `bin/x64/CapsoTest.exe`: 64-bit sample application.
-- `bin/x64/CapsoLLD.dll`: 64-bit low-level DLL.
+- `bin/x32/CapsoLLD.dll`: pre-built 32-bit low-level DLL.
+- `bin/x32/CapsoTest.exe`: pre-built 32-bit sample executable.
+- `bin/x64/CapsoLLD.dll`: pre-built 64-bit low-level DLL.
+- `bin/x64/CapsoTest.exe`: pre-built 64-bit sample executable.
 
 Use matching executable and DLL architectures together.
 
