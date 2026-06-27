@@ -1,0 +1,35 @@
+[Version]
+Signature   = "$Windows NT$"
+Class       = USBDevice
+ClassGUID   = {88BAE032-5A81-49f0-BC3D-A4FF138216D6}
+Provider    = %ManufacturerName%
+CatalogFile = AVCapso.cat
+DriverVer   = 06/17/2026,1.0.0.0
+
+[Manufacturer]
+%ManufacturerName% = Standard, NTamd64, NTarm64
+
+[Standard.NTamd64]
+%DeviceName% = USB_Install, USB\VID_0638&PID_0931
+
+[Standard.NTarm64]
+%DeviceName% = USB_Install, USB\VID_0638&PID_0931
+
+[USB_Install]
+Include = winusb.inf
+Needs   = WINUSB.NT
+
+[USB_Install.Services]
+Include = winusb.inf
+Needs   = WINUSB.NT.Services
+
+[USB_Install.HW]
+AddReg = Dev_AddReg
+
+[Dev_AddReg]
+; GUID for locating this device in User Mode programs
+HKR,,DeviceInterfaceGUIDs,0x10000,"{CC0EDA17-920D-4F8B-A011-7240658BF2F9}"
+
+[Strings]
+ManufacturerName = "CapsoVision"
+DeviceName       = "CapsoVision Capsule Data Access System"
