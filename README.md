@@ -38,6 +38,98 @@ header, and the CDAS3 command specification workbook.
 - `redist/VC_redist.x86.exe` and `redist/VC_redist.x64.exe`  
   Visual C++ runtime installers.
 
+## Folder Guide
+
+```text
+.
+├── CapsoTest.sln
+├── CapsoLLD/
+├── CapsoTest/
+├── Driver/
+├── bin/
+│   ├── x32/
+│   └── x64/
+├── include/
+├── docs/
+├── redist/
+└── archive/
+```
+
+### `CapsoLLD/`
+
+Low-level DLL project. This folder builds `CapsoLLD.dll` and contains the
+WinUSB device-management implementation.
+
+Important files:
+
+- `Capso.cpp`: exported `AVCapso_*` API wrappers.
+- `CDeviceManager.cpp` / `CDeviceManager.h`: SetupAPI enumeration, WinUSB
+  endpoint discovery, I/O lock handling, and synchronous pipe read/write logic.
+- `API_Capso.h`: build-local copy of the exported DLL API header.
+- `CapsoLLD.vcxproj`: Visual Studio C++ DLL project.
+
+### `CapsoTest/`
+
+MFC dialog sample application. This folder builds `CapsoTest.exe`.
+
+Important files:
+
+- `CapsoTestDlg.cpp` / `CapsoTestDlg.h`: sample UI logic, dynamic DLL loading,
+  serial-number read/write commands, and status/error-code handling.
+- `CapsoTest.cpp`: MFC application entry point.
+- `CapsoTest.vcxproj`: Visual Studio C++ MFC application project.
+- `res/`: icon and resource include files used by the dialog.
+
+### `Driver/`
+
+WinUSB driver installation package for the CDAS USB device.
+
+Important files:
+
+- `AVCapso.inf`: binds `USB\VID_0638&PID_0931` to WinUSB and registers the
+  device interface GUID.
+- `avcapso.cat`: catalog file for the driver package.
+- `InstallDev.bat`: installs the driver package with `pnputil`.
+- `RemoveDev.bat`: removes the driver package and matching installed INF
+  entries.
+
+### `bin/`
+
+Prebuilt binaries rebuilt from the current source tree.
+
+- `bin/x32/CapsoTest.exe`: 32-bit sample application.
+- `bin/x32/CapsoLLD.dll`: 32-bit low-level DLL.
+- `bin/x64/CapsoTest.exe`: 64-bit sample application.
+- `bin/x64/CapsoLLD.dll`: 64-bit low-level DLL.
+
+Use matching executable and DLL architectures together.
+
+### `include/`
+
+Public API include folder for applications that want to call `CapsoLLD.dll`.
+
+- `include/API_Capso.h`: public exported DLL API declarations.
+
+### `docs/`
+
+Protocol and command documentation.
+
+- `docs/CDAS3 New command_V16_AVISION.xlsx`: command list, command packet
+  layouts, status packet layout, and device error-code definitions.
+
+### `redist/`
+
+Visual C++ runtime installers for systems that need the matching MSVC runtime.
+
+- `redist/VC_redist.x86.exe`
+- `redist/VC_redist.x64.exe`
+
+### `archive/`
+
+Original packaged archive preserved for traceability.
+
+- `archive/CapsoDriver.rar`
+
 ## Architecture
 
 The sample application loads the DLL dynamically:
