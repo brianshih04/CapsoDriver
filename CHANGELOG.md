@@ -14,6 +14,9 @@
 - Moved Visual C++ redistributable installers to `redist/`.
 - Moved the command workbook to `docs/`.
 - Moved the original packaged archive to `archive/`.
+- Removed the duplicate root-level `API_Capso.h`; the public header now lives in
+  `include/API_Capso.h`, while the DLL project keeps its build-local copy in
+  `CapsoLLD/API_Capso.h`.
 
 ## 2026-06-27
 

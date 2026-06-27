@@ -6,11 +6,8 @@ header, and the CDAS3 command specification workbook.
 
 ## Repository Contents
 
-- `API_Capso.h`  
-  Public header for the exported `CapsoLLD.dll` API.
-
 - `include/API_Capso.h`  
-  Public API header copy from the packaged driver folder.
+  Public header for the exported `CapsoLLD.dll` API.
 
 - `docs/CDAS3 New command_V16_AVISION.xlsx`  
   CDAS3 command specification, including command layouts and device error-code
@@ -68,7 +65,10 @@ The registered device interface GUID is:
 
 ## Exported DLL API
 
-The public API is declared in `API_Capso.h`.
+The public API is declared in `include/API_Capso.h`.
+
+The DLL project also keeps an internal copy at `CapsoLLD/API_Capso.h` for its
+own build.
 
 ```cpp
 BOOL AVCapso_Initialize();
